@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 17:30:03 by ensebast          #+#    #+#             */
-/*   Updated: 2022/10/24 19:41:12 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/20 21:13:06 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ double	*tsub(double *t_one, double *t_two)
 
 // Dot product - vector op
 // At least one should be normalize
-double	*tdot(double *t_one, double *t_two)
+double	tdot(double *t_one, double *t_two)
 {
 	return (t_one[0] * t_two[0] + t_one[1] * t_two[1]
 				+ t_one[2] * t_two[2] + t_one[3] * t_two[3]);

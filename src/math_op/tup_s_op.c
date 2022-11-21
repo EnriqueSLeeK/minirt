@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 18:05:04 by ensebast          #+#    #+#             */
-/*   Updated: 2022/10/24 18:20:17 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/20 21:37:28 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ double	*tsdiv(double *tup, double f)
 	return (vec_init(f * tup[0], f * tup[1], f * tup[2], f * tup[3]));
 }
 
+// Length
 double tmag(double *tup)
 {
 	return (sqrt(tup[0] * tup[0]
@@ -45,8 +46,6 @@ double *tnorm(double *tup)
 
 	f = tmag(tup);
 	if (f > 0)
-	{
 		return (tsmult(tup, f));
-	}
 	return (tup);
 }

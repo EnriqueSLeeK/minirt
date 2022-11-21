@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 16:58:08 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/11 10:05:32 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/20 21:49:45 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ int	main(int argc, char **argv)
 		write(2, "Error: empty file or bad file\n", 30);
 		return (1);
 	}
-	printf("%d %d %d %d\n", list_elem.quant[0], list_elem.quant[1],list_elem.quant[2],list_elem.quant[3]);
 	if (alloc_mem(&list_elem, list_elem.quant)
 		|| mlx_prepare(&list_elem.mlx_inf))
 	{
@@ -128,8 +127,8 @@ int	main(int argc, char **argv)
 		dealloc_mem(&list_elem);
 		return (1);
 	}
-
 	raytrace(&list_elem);
+	mlx_start(&list_elem);
 
 	// Testing
 	dealloc_mem(&list_elem);

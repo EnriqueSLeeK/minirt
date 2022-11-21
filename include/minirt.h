@@ -6,7 +6,7 @@
 /*   By: coder <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 00:34:54 by coder             #+#    #+#             */
-/*   Updated: 2022/09/29 14:35:43 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/20 21:27:27 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # include "parse.h"
 # include "vector.h"
 # include "checker.h"
+# include "matrix.h"
+# include "intersect_list.h"
+# include "raytrace.h"
 # include "mlx_util.h"
 
 # include <math.h>

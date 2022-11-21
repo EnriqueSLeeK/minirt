@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrix_op.c                                        :+:      :+:    :+:   */
+/*   m_op.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 17:16:21 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/11 11:01:59 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/20 21:45:25 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ double	*m_mult_t(double *matrix_p, double **matrix_s)
 	double	*result;
 	int		i;
 
+	i = 0;
 	result = malloc(sizeof(double) * 4);
 	while (i < 4)
 	{
@@ -33,13 +34,13 @@ double	*m_mult_t(double *matrix_p, double **matrix_s)
 }
 
 // 0 == failure
-double	*m_mult(double **matrix_p, double **matrix_s)
+double	**m_mult(double **matrix_p, double **matrix_s)
 {
 	double	**res;
 	int		c;
 	int		r;
 
-	res = matrix_create(4);
+	res = create_m(4);
 	if (res == NULL)
 		return (0);
 	c = 0;
@@ -63,22 +64,26 @@ double	*m_mult(double **matrix_p, double **matrix_s)
 int	matrix_cmp(double **matrix_p, double **matrix_s, int dim)
 {
 	int	i;
+	int	j;
 
 	i = 0;
+	j = 0;
 	while (i < dim)
 	{
-		if (matrix_p[i][0] != matrix_s[i][0]
-			||matrix_p[i][1] != matrix_s[i][1]
-			||matrix_p[i][2] != matrix_s[i][2]
-			||matrix_p[i][3] != matrix_s[i][3])
-			return (0);
+		while (j < dim)
+		{
+			if (matrix_p[i][j] != matrix_s[i][j])
+				return (0);
+			j++;
+		}
 		i++;
+		j = 0;
 	}
 	return (1);
 }
 
 // Transpose m
-void	transpose_m(double **matrix, int dim)
+double	**transpose_m(double **matrix, int dim)
 {
 	int		i;
 	int		k;
@@ -104,11 +109,32 @@ void	transpose_m(double **matrix, int dim)
 		l++;
 		k = l;
 	}
+	return (matrix);
 }
 
-// Inverse m
-/*
-void	inverse_m(double **m, int dim)
+// Return a inversed m matrix
+double	**inverse_m(double **m, int dim)
 {
+	double	**inverse;
+	double	factor;
+	int		i;
+	int		j;
+
+	factor = det(m, dim);
+	if (factor == 0)
+		return (0);
+	inverse = create_m(dim);
+	if (inverse == NULL)
+		return (0);
+	matrix_cpy(inverse, m, dim);
+	factor = 1 / factor;
+	i = -1;
+	j = -1;
+	while (++i < dim)
+	{
+		while (++j < dim)
+			inverse[i][j] = cof(m, i, j, dim) * factor;
+		j = -1;
+	}
+	return (transpose_m(inverse, dim));
 }
-*/

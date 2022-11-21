@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrix_create.c                                    :+:      :+:    :+:   */
+/*   m_create.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 10:12:43 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/11 11:11:32 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/17 02:07:23 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,11 @@ double	**create_m(int dim)
 		matrix[i] = malloc(sizeof(double) * dim);
 		if (matrix[i] == NULL)
 		{
-			matrix_destruction(matrix, i);
+			destroy_m(matrix, i);
 			return (0);
 		}
 		i++;
 	}
-	matrix[0][dim] = dim;
 	return (matrix);
 }
 
@@ -63,12 +62,31 @@ void	identity_m(double **m, int dim)
 	}
 }
 
-void	destruction_m(double **m, int i)
+void	matrix_cpy(double **m_d, double **m_s, int dim)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i < dim)
+	{
+		while (j < dim)
+		{
+			m_d[i][j] = m_s[i][j];
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+}
+
+void	destroy_m(double **m, int i)
 {
 	int	k;
 
 	k = 0;
-	while (k <= i)
+	while (k < i)
 	{
 		free(m[k]);
 		k++;

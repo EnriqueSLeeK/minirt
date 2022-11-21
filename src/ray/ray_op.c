@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util.h                                             :+:      :+:    :+:   */
+/*   ray_op.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 16:44:06 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/20 21:40:23 by ensebast         ###   ########.br       */
+/*   Created: 2022/11/17 04:06:15 by ensebast          #+#    #+#             */
+/*   Updated: 2022/11/20 21:47:00 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTIL_H
-# define UTIL_H
+#include "minirt.h"
 
-# include "struct.h"
+double	*position(t_ray *ray, double t)
+{
+	double	*res;
+	double	*tmp;
 
-// Memory alloc
-int		alloc_mem(t_list_elem *buff, int *count);
-void	dealloc_mem(t_list_elem *buff);
-
-// Aux functions
-char	*get_line(int fd);
-int		deg_to_rad(double *fov);
-int		make_color(double r, double g, double b);
-int		cmp_float(double f, double s);
-
-#endif
+	tmp = tsmult(ray -> dir, t);
+	res = tadd(ray -> orig, tmp);
+	free(tmp);
+	return (res);
+}

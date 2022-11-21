@@ -6,20 +6,20 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:06:58 by ensebast          #+#    #+#             */
-/*   Updated: 2022/09/29 14:12:01 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/20 18:13:07 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minirt.h>
+#include "minirt.h"
 
-void	ratio_to_literal(double *ratio, int *buff)
+int	make_color(double r, double g, double b)
 {
-	buff[0] = 255.999 * ratio[0];
-	buff[1] = 255.999 * ratio[1];
-	buff[2] = 255.999 * ratio[2];
-}
+	int	l_r;
+	int	l_g;
+	int	l_b;
 
-int	make_color(int r, int g, int b)
-{
-	return (r << 16 | g << 8 | b);
+	l_r = 255.999 * r;
+	l_g = 255.999 * g;
+	l_b = 255.999 * b;
+	return (l_r << 16 | l_g << 8 | l_b);
 }

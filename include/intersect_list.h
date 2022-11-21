@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util.h                                             :+:      :+:    :+:   */
+/*   intersect_list.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 16:44:06 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/20 21:40:23 by ensebast         ###   ########.br       */
+/*   Created: 2022/11/20 21:15:16 by ensebast          #+#    #+#             */
+/*   Updated: 2022/11/20 21:24:59 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTIL_H
-# define UTIL_H
+#ifndef INTERSECT_LIST_H
+# define INTERSECT_LIST_H
 
-# include "struct.h"
+// Create a dynamic array
+t_intersect_list	*create_list(int size);
 
-// Memory alloc
-int		alloc_mem(t_list_elem *buff, int *count);
-void	dealloc_mem(t_list_elem *buff);
+// Add a element to the array
+void				add_intersect(t_intersect_list *ptr, t_elem *elem, double t);
 
-// Aux functions
-char	*get_line(int fd);
-int		deg_to_rad(double *fov);
-int		make_color(double r, double g, double b);
-int		cmp_float(double f, double s);
+// List resize util
+void				resize_list(t_intersect_list *list);
+void				list_cpy(t_intersect *dst, t_intersect *src, int n);
+
+t_elem				*hit(t_intersect_list *list);
 
 #endif
