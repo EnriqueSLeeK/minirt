@@ -59,10 +59,10 @@ double	dot_prod(double *v_f, double *v_s)
 
 void put_pixel(t_img *img, int x, int y, int color)
 {
-	char *dst;
+	char	*dst;
 
-	dst = img -> addr + (y * img -> len_line + x * (img ->  bpp / 8));
-	*(unsigned int*)dst = color;
+	dst = img -> addr + (y * img -> len_line + x * (img -> bpp / 8));
+	*(unsigned int *)dst = color;
 }
 
 void render(int width, int height, t_img *img)

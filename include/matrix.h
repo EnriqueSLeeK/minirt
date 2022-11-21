@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 02:52:06 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/20 21:11:22 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/21 02:53:26 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 // Memory
 double	**create_m(int dim);
 void	destroy_m(double **m, int i);
-
 
 // Some actions
 void	identity_m(double **m, int dim);
@@ -37,11 +36,14 @@ double	cof(double **matrix, int r, int c, int dim);
 double	**submatrix(double **matrix, int r, int c, int dim);
 
 // Transformations
-double	**translation(double x, double y, double z);
-double	**scaling(double x, double y, double z);
+double	**translation(double x, double y, double z, double **m);
+double	**scaling(double x, double y, double z, double **m);
 
-double	**rotation_x(double rad);
-double	**rotation_y(double rad);
-double	**rotation_z(double rad);
+double	**rotation_x(double rad, double **m);
+double	**rotation_y(double rad, double **m);
+double	**rotation_z(double rad, double **m);
+
+// Apply transform
+t_ray	*set_transform(t_ray *ray, double **trasfm);
 
 #endif

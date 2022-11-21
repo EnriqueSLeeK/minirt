@@ -6,7 +6,7 @@
 #    By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/28 00:46:12 by ensebast          #+#    #+#              #
-#    Updated: 2022/11/20 21:49:17 by ensebast         ###   ########.br        #
+#    Updated: 2022/11/21 01:17:41 by ensebast         ###   ########.br        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ FILES_M := main.c \
 		m_det.c \
 		m_op.c \
 		m_transform.c \
+		set_transform.c \
 		tup_op.c \
 		tup_s_op.c \
 		ray_op.c \

@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 17:16:21 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/20 21:45:25 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/21 01:40:29 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ double	*m_mult_t(double *matrix_p, double **matrix_s)
 	result = malloc(sizeof(double) * 4);
 	while (i < 4)
 	{
-		result[i] = matrix_p[i] * matrix_s[0][i]
-					+ matrix_p[i] * matrix_s[1][i]
-					+ matrix_p[i] * matrix_s[2][i]
-					+ matrix_p[i] * matrix_s[3][i];
+		result[i] = matrix_p[0] * matrix_s[i][0]
+					+ matrix_p[1] * matrix_s[i][1]
+					+ matrix_p[2] * matrix_s[i][2]
+					+ matrix_p[3] * matrix_s[i][3];
 		i++;
 	}
 	return (result);

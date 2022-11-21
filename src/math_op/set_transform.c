@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_draw.c                                         :+:      :+:    :+:   */
+/*   set_transform.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/13 22:34:55 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/21 00:11:46 by ensebast         ###   ########.br       */
+/*   Created: 2022/11/21 01:00:06 by ensebast          #+#    #+#             */
+/*   Updated: 2022/11/21 01:28:50 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	put_pixel(t_img *img, int x, int y, int color)
+t_ray	*set_transform(t_ray *ray, double **m_transform)
 {
-	char	*dst;
+	t_ray *new_ray;
 
-	dst = img -> addr + (y * img -> len_line + x * (img -> bpp / 8));
-	*(unsigned int *)dst = color;
+	new_ray = malloc(sizeof(t_ray));
+	new_ray -> orig = m_mult_t(ray -> orig, m_transform);
+	new_ray -> dir = m_mult_t(ray -> dir, m_transform);
+	return (new_ray);
 }

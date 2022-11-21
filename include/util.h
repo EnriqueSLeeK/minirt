@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:44:06 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/20 21:40:23 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/21 01:15:33 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 // Memory alloc
 int		alloc_mem(t_list_elem *buff, int *count);
 void	dealloc_mem(t_list_elem *buff);
+void	dealloc_ray(t_ray *ray);
 
 // Aux functions
 char	*get_line(int fd);

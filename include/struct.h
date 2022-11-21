@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 19:33:59 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/20 21:35:17 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/21 02:52:14 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_elem
 	double				coord[4];
 	double				color[3];
 	double				norm_vec[4];
+	double				**trasf[4][4];
 	double				diameter;
 	double				height;
 	void				(*intersect)(struct s_elem *elem, t_ray *ray, t_intersect_list *list);

@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:10:12 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/20 21:41:53 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/21 01:51:35 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 // center = Sphere center
 // factor is used for optimization
 // return nothing
-void	s_intersect(t_elem *elem, t_ray *ray, t_intersect_list *i_list)
+void	intersect_s(t_elem *elem, t_ray *ray, t_intersect_list *i_list)
 {
 	double		*s_to_ray;
 	double		factor;
@@ -34,9 +34,20 @@ void	s_intersect(t_elem *elem, t_ray *ray, t_intersect_list *i_list)
 	factor = 1.0 / (2.0 * bhask.a);
 	if (!cmp_float(bhask.discri, 0))
 	{
-		add_intersect(i_list, elem, - bhask.b + sqrt(bhask.discri) * factor);
-		add_intersect(i_list, elem, - bhask.b - sqrt(bhask.discri) * factor);
+		add_intersect(i_list, elem, (- bhask.b + sqrt(bhask.discri)) * factor);
+		add_intersect(i_list, elem, (- bhask.b - sqrt(bhask.discri)) * factor);
 	}
 	else
-		add_intersect(i_list, elem, - bhask.b + sqrt(bhask.discri) * factor);
+		add_intersect(i_list, elem, (- bhask.b + sqrt(bhask.discri)) * factor);
+}
+
+double	*normal_at_s(t_elem *elem, double *p)
+{
+	double	*diff;
+	double	*norm;
+
+	diff = tsub(elem -> coord, p);
+	norm = tnorm(diff);
+	free(diff);
+	return (norm);
 }
