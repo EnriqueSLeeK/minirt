@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util.h                                             :+:      :+:    :+:   */
+/*   tup_reflect.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 16:44:06 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/25 21:55:22 by ensebast         ###   ########.br       */
+/*   Created: 2022/11/23 01:33:32 by ensebast          #+#    #+#             */
+/*   Updated: 2022/11/23 01:33:46 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTIL_H
-# define UTIL_H
+#include "minirt.h"
 
-# include "struct.h"
+t_tuple	treflect(t_tuple *v, t_tuple *n)
+{
+	t_tuple	ref;
+	double	factor;
 
-// Memory alloc
-int		alloc_mem(t_list_elem *buff, int *count);
-void	dealloc_mem(t_list_elem *buff);
-void	dealloc_list(t_intersect *inter);
-
-// Aux functions
-char	*get_line(int fd);
-int		deg_to_rad(double *fov);
-int		make_color(double r, double g, double b);
-int		cmp_float(double f, double s);
-
-#endif
+	factor = 2 * tdot(v, n);
+	ref = tsmult(n, factor);
+	ref = tsub(v, &ref);
+	return (ref);
+}

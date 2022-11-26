@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 10:12:43 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/17 02:07:23 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/23 00:53:35 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,46 +15,29 @@
 // 1 == success
 // 0 == failure
 // row (0) column (dim) will store the dim
-double	**create_m(int dim)
+t_matrix	create_m(int dim)
 {
-	double	**matrix;
-	int		i;
+	t_matrix	m;
 
-	if (dim < 1)
-		return (0);
-	matrix = malloc(sizeof(double *) * dim);
-	if (matrix == NULL)
-		return (0);
-	matrix[0] = malloc((sizeof(double) * dim) + 1);
-	i = 1;
-	while (i < dim)
-	{
-		matrix[i] = malloc(sizeof(double) * dim);
-		if (matrix[i] == NULL)
-		{
-			destroy_m(matrix, i);
-			return (0);
-		}
-		i++;
-	}
-	return (matrix);
+	m.size = dim;
+	return (m);
 }
 
 // Take a pre-alloc matrix then contruct a ident m
-void	identity_m(double **m, int dim)
+void	identity_m(t_matrix *matrix)
 {
 	int	i;
 	int	k;
 
 	i = 0;
 	k = 0;
-	while (i < dim)
+	while (i < matrix -> size)
 	{
-		while (k < dim)
+		while (k < matrix -> size)
 		{
-			m[i][k] = 0;
+			matrix -> m[i][k] = 0;
 			if (i == k)
-				m[i][k] = 1;
+				matrix -> m[i][k] = 1;
 			k++;
 		}
 		i++;
@@ -62,34 +45,22 @@ void	identity_m(double **m, int dim)
 	}
 }
 
-void	matrix_cpy(double **m_d, double **m_s, int dim)
+// Copy matrix
+void	matrix_cpy(t_matrix *m_d, t_matrix *m_s)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	while (i < dim)
+	while (i < m_d -> size)
 	{
-		while (j < dim)
+		while (j < m_d -> size)
 		{
-			m_d[i][j] = m_s[i][j];
+			m_d -> m[i][j] = m_s -> m[i][j];
 			j++;
 		}
 		j = 0;
 		i++;
 	}
-}
-
-void	destroy_m(double **m, int i)
-{
-	int	k;
-
-	k = 0;
-	while (k < i)
-	{
-		free(m[k]);
-		k++;
-	}
-	free(m);
 }

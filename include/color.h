@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util.h                                             :+:      :+:    :+:   */
+/*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 16:44:06 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/25 21:55:22 by ensebast         ###   ########.br       */
+/*   Created: 2022/11/23 20:29:55 by ensebast          #+#    #+#             */
+/*   Updated: 2022/11/23 22:48:06 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTIL_H
-# define UTIL_H
+#ifndef COLOR_H
+# define COLOR_H
 
-# include "struct.h"
+t_color	cmult(t_color *c_one, t_color *c_two);
+t_color	cadd(t_color *c_one, t_color *c_two);
+t_color	csub(t_color *c_one, t_color *c_two);
 
-// Memory alloc
-int		alloc_mem(t_list_elem *buff, int *count);
-void	dealloc_mem(t_list_elem *buff);
-void	dealloc_list(t_intersect *inter);
+t_color	csmult(t_color *color, double f);
 
-// Aux functions
-char	*get_line(int fd);
-int		deg_to_rad(double *fov);
-int		make_color(double r, double g, double b);
-int		cmp_float(double f, double s);
+t_color	create_c(double r, double g, double b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: coder <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 00:34:54 by coder             #+#    #+#             */
-/*   Updated: 2022/11/21 00:21:50 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/25 23:00:26 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,17 @@
 # include "struct.h"
 # include "libft.h"
 # include "parse.h"
-# include "vector.h"
+# include "ray_op.h"
+# include "tuple_op.h"
 # include "checker.h"
 # include "matrix.h"
+# include "minirt.h"
 # include "intersect_list.h"
+# include "shading.h"
 # include "raytrace.h"
+# include "material.h"
+# include "camera.h"
+# include "color.h"
 # include "mlx_util.h"
 
 # include <math.h>

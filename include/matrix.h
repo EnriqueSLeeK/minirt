@@ -6,44 +6,41 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 02:52:06 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/21 02:53:26 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/25 01:48:53 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MATRIX_H
 # define MATRIX_H
 
-// Memory
-double	**create_m(int dim);
-void	destroy_m(double **m, int i);
+// Matrix creation
+t_matrix	create_m(int dim);
 
-// Some actions
-void	identity_m(double **m, int dim);
-void	matrix_cpy(double **m_d, double **m_s, int dim);
+// Util function
+void		matrix_cpy(t_matrix *m_d, t_matrix *m_s);
+void		identity_m(t_matrix *matrix);
 
-double	**inverse_m(double **m, int dim);
-double	**transpose_m(double **matrix, int dim);
-int		matrix_cmp(double **matrix_p, double **matrix_s, int dim);
+// Determinant calc
+t_matrix	submatrix(t_matrix *matrix, int r, int c);
+double		cof(t_matrix *matrix, int r, int c);
+double		det(t_matrix *matrix);
 
-// multiplication with tuple
-double	*m_mult_t(double *matrix_p, double **matrix_s);
+// Matrix operations
+t_matrix	inverse_m(t_matrix *m);
+t_tuple		m_mult_t(t_matrix *matrix, t_tuple *tuple);
+t_matrix	m_mult(t_matrix *matrix_p, t_matrix *matrix_s);
+void		transpose_m(t_matrix *matrix);
+int			matrix_cmp(t_matrix *matrix_p, t_matrix *matrix_s);
 
-// multiplication with square matrix
-double	**m_mult(double **matrix_p, double **matrix_s);
-
-double	det(double **matrix, int dim);
-double	cof(double **matrix, int r, int c, int dim);
-double	**submatrix(double **matrix, int r, int c, int dim);
-
-// Transformations
-double	**translation(double x, double y, double z, double **m);
-double	**scaling(double x, double y, double z, double **m);
-
-double	**rotation_x(double rad, double **m);
-double	**rotation_y(double rad, double **m);
-double	**rotation_z(double rad, double **m);
+// Transformation
+t_matrix	translation(double x, double y, double z);
+t_matrix	scaling(double x, double y, double z);
+t_matrix	rotation_x(double rad);
+t_matrix	rotation_y(double rad);
+t_matrix	rotation_z(double rad);
 
 // Apply transform
-t_ray	*set_transform(t_ray *ray, double **trasfm);
+void		set_transform(t_elem *elem, t_matrix transform);
+t_matrix	view_transform(t_tuple *from, t_tuple *to, t_tuple *up);
 
 #endif

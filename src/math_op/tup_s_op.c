@@ -6,46 +6,54 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 18:05:04 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/20 21:37:28 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/24 00:58:07 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-double	*tneg(double *tup)
+t_tuple	tneg(t_tuple *tup)
 {
-	return (vec_init(-tup[0], -tup[1], -tup[2], -tup[3]));
+	return (create_t(-tup -> tup[0],
+				-tup -> tup[1],
+				-tup -> tup[2],
+				-tup -> tup[3]));
 }
 
 // t = tuple; s = scalar; f = factor
-double	*tsmult(double *tup, double f)
+t_tuple	tsmult(t_tuple *tup, double f)
 {
-	return (vec_init(f * tup[0], f * tup[1], f * tup[2], f * tup[3]));
+	return (create_t(f * tup -> tup[0],
+				f * tup -> tup[1],
+				f * tup -> tup[2],
+				f * tup -> tup[3]));
 }
 
 // Small optimization
-double	*tsdiv(double *tup, double f)
+t_tuple	tsdiv(t_tuple *tup, double f)
 {
 	f = 1.0 / f;
-	return (vec_init(f * tup[0], f * tup[1], f * tup[2], f * tup[3]));
+	return (create_t(f * tup -> tup[0],
+				f * tup -> tup[1],
+				f * tup -> tup[2],
+				f * tup -> tup[3]));
 }
 
 // Length
-double tmag(double *tup)
+double tmag(t_tuple *tup)
 {
-	return (sqrt(tup[0] * tup[0]
-				+ tup[1] * tup[1]
-				+ tup[2] * tup[2]
-				+ tup[3] * tup[3]));
+	return (sqrt(tup -> tup[0] * tup -> tup[0]
+				+ tup -> tup[1] * tup -> tup[1]
+				+ tup -> tup[2] * tup -> tup[2]));
 }
 
 // Normalize
-double *tnorm(double *tup)
+t_tuple	tnorm(t_tuple *tup)
 {
 	double	f;
 
-	f = tmag(tup);
+	f = 1 / tmag(tup);
 	if (f > 0)
 		return (tsmult(tup, f));
-	return (tup);
+	return (*tup);
 }

@@ -6,73 +6,71 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 17:16:21 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/21 01:40:29 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/24 03:10:28 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 // Specialized matrix multiplication
-// 1x4 * 4x4 => 1x4 
+// 4x4 * 4 x 1 => 4 x 1
 // m = matrix & t = tuple
-double	*m_mult_t(double *matrix_p, double **matrix_s)
+t_tuple	m_mult_t(t_matrix *matrix, t_tuple *tuple)
 {
-	double	*result;
+	t_tuple	res_t;
 	int		i;
 
 	i = 0;
-	result = malloc(sizeof(double) * 4);
+	res_t = create_t(0, 0, 0, 0);
 	while (i < 4)
 	{
-		result[i] = matrix_p[0] * matrix_s[i][0]
-					+ matrix_p[1] * matrix_s[i][1]
-					+ matrix_p[2] * matrix_s[i][2]
-					+ matrix_p[3] * matrix_s[i][3];
+		res_t.tup[i] = tuple -> tup[0] * matrix -> m[i][0]
+					+ tuple -> tup[1] * matrix -> m[i][1]
+					+ tuple -> tup[2] * matrix -> m[i][2]
+					+ tuple -> tup[3] * matrix -> m[i][3];
 		i++;
 	}
-	return (result);
+	return (res_t);
 }
 
 // 0 == failure
-double	**m_mult(double **matrix_p, double **matrix_s)
+t_matrix	m_mult(t_matrix *matrix_p, t_matrix *matrix_s)
 {
-	double	**res;
-	int		c;
-	int		r;
+	t_matrix	result_m;
+	int			c;
+	int			r;
 
-	res = create_m(4);
-	if (res == NULL)
-		return (0);
 	c = 0;
 	r = 0;
-	while (r < 4)
+	result_m = create_m(matrix_p -> size);
+	while (r < matrix_p -> size)
 	{
-		while (c < 4)
+		while (c < matrix_p -> size)
 		{
-			res[r][c] = matrix_p[r][0] * matrix_s[0][c]
-				+ matrix_p[r][1] * matrix_s[1][c]
-				+ matrix_p[r][2] * matrix_s[2][c]
-				+ matrix_p[r][3] * matrix_s[3][c];
+			result_m.m[r][c] = matrix_p -> m[r][0] * matrix_s -> m[0][c]
+				+ matrix_p -> m[r][1] * matrix_s -> m[1][c]
+				+ matrix_p -> m[r][2] * matrix_s -> m[2][c]
+				+ matrix_p -> m[r][3] * matrix_s -> m[3][c];
 			c++;
 		}
 		r++;
 		c = 0;
 	}
-	return (res);
+	return (result_m);
 }
 
-int	matrix_cmp(double **matrix_p, double **matrix_s, int dim)
+int	matrix_cmp(t_matrix *matrix_p, t_matrix *matrix_s)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	while (i < dim)
+	while (i < matrix_p -> size)
 	{
-		while (j < dim)
+		while (j < matrix_p -> size)
 		{
-			if (matrix_p[i][j] != matrix_s[i][j])
+			if (matrix_p -> m[i][j] != matrix_s -> m[i][j])
 				return (0);
 			j++;
 		}
@@ -83,58 +81,56 @@ int	matrix_cmp(double **matrix_p, double **matrix_s, int dim)
 }
 
 // Transpose m
-double	**transpose_m(double **matrix, int dim)
+void	transpose_m(t_matrix *matrix)
 {
-	int		i;
-	int		k;
-	int		l;
+	int		i[3];
 	double	tmp;
 
-	i = 0;
-	k = 0;
-	l = 0;
-	while (i < dim)
+	i[0] = 0;
+	i[1] = 0;
+	i[2] = 0;
+	while (i[0] < matrix -> size)
 	{
-		while (k < dim)
+		while (i[1] < matrix -> size)
 		{
-			if (i != k)
+			if (i[0] != i[1])
 			{
-				tmp = matrix[i][k];
-				matrix[i][k] = matrix[k][i];
-				matrix[k][i] = tmp;
+				tmp = matrix -> m[i[0]][i[1]];
+				matrix -> m[i[0]][i[1]] = matrix -> m[i[1]][i[0]];
+				matrix -> m[i[1]][i[0]] = tmp;
 			}
-			k++;
+			i[1]++;
 		}
-		i++;
-		l++;
-		k = l;
+		i[0]++;
+		i[2]++;
+		i[1] = i[2];
 	}
-	return (matrix);
 }
 
 // Return a inversed m matrix
-double	**inverse_m(double **m, int dim)
+t_matrix	inverse_m(t_matrix *m)
 {
-	double	**inverse;
-	double	factor;
-	int		i;
-	int		j;
+	t_matrix	inverse;
+	double		factor;
+	int			i;
+	int			j;
 
-	factor = det(m, dim);
+	factor = det(m);
+	inverse = create_m(m -> size);
 	if (factor == 0)
-		return (0);
-	inverse = create_m(dim);
-	if (inverse == NULL)
-		return (0);
-	matrix_cpy(inverse, m, dim);
+	{
+		identity_m(&inverse);
+		return (inverse);
+	}
+	matrix_cpy(&inverse, m);
 	factor = 1 / factor;
 	i = -1;
 	j = -1;
-	while (++i < dim)
+	while (++i < m -> size)
 	{
-		while (++j < dim)
-			inverse[i][j] = cof(m, i, j, dim) * factor;
+		while (++j < m -> size)
+			inverse.m[j][i] = cof(m, i, j) * factor;
 		j = -1;
 	}
-	return (transpose_m(inverse, dim));
+	return (inverse);
 }

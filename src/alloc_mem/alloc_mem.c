@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 17:02:08 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/20 18:06:36 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/25 23:17:47 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ int	alloc_mem(t_list_elem *elem_ptr, int *quant)
 	else
 		return (1);
 	if (!(elem_ptr -> elem && elem_ptr -> light
-		&& elem_ptr -> ambient && elem_ptr -> camera
-		&& elem_ptr -> intersect_l))
+		&& elem_ptr -> ambient && elem_ptr -> camera))
 	{
 		dealloc_mem(elem_ptr);
 		return (1);
@@ -42,6 +41,6 @@ int	alloc_mem(t_list_elem *elem_ptr, int *quant)
 	ft_memset(elem_ptr -> ambient, 0, sizeof(t_ambient) * quant[2]);
 	ft_memset(elem_ptr -> camera, 0, sizeof(t_camera) * quant[3]);
 	ft_memset(elem_ptr -> intersect_l -> elem_inter, 0,
-			sizeof(t_intersect) * 32);
+		sizeof(t_intersect) * 32);
 	return (0);
 }

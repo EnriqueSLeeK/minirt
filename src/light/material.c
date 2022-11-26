@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util.h                                             :+:      :+:    :+:   */
+/*   material.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 16:44:06 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/25 21:55:22 by ensebast         ###   ########.br       */
+/*   Created: 2022/11/23 01:47:44 by ensebast          #+#    #+#             */
+/*   Updated: 2022/11/24 03:20:50 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTIL_H
-# define UTIL_H
+#include "minirt.h"
 
-# include "struct.h"
+// Default setting for the material
+t_material	material(t_color *color, t_ambient *ambient)
+{
+	t_material	mat;
 
-// Memory alloc
-int		alloc_mem(t_list_elem *buff, int *count);
-void	dealloc_mem(t_list_elem *buff);
-void	dealloc_list(t_intersect *inter);
-
-// Aux functions
-char	*get_line(int fd);
-int		deg_to_rad(double *fov);
-int		make_color(double r, double g, double b);
-int		cmp_float(double f, double s);
-
-#endif
+	mat.color = color;
+	mat.ambient = ambient;
+	mat.diffuse = 0.9;
+	mat.specular = 0.9;
+	mat.shininess = 50.0;
+	return (mat);
+}

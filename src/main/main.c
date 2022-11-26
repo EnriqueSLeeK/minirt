@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 16:58:08 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/20 21:49:45 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/25 22:45:13 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ int	main(int argc, char **argv)
 	t_list_elem	list_elem;
 
 	ft_memset(list_elem.quant, 0, sizeof(int) * 4);
+	ft_memset(&list_elem, 0, sizeof(t_list_elem));
 	if (basic_check(argc, argv))
 		return (1);
 	if (check_count_lines(list_elem.quant, argv[1]))

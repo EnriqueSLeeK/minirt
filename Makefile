@@ -6,7 +6,7 @@
 #    By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/28 00:46:12 by ensebast          #+#    #+#              #
-#    Updated: 2022/11/21 01:17:41 by ensebast         ###   ########.br        #
+#    Updated: 2022/11/25 23:54:49 by ensebast         ###   ########.br        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ RM := rm -rf
 
 # Source files
 FILES_M := main.c \
+		camera_compute.c\
 		check_line.c \
 		checker_ambient.c \
 		checker_format.c \
@@ -40,7 +41,6 @@ FILES_M := main.c \
 		str_to_double.c \
 		str_to_int.c \
 		val_range_check.c \
-		vec_init.c \
 		mlx_draw.c \
 		mlx_key.c \
 		mlx_prepare.c \
@@ -48,13 +48,20 @@ FILES_M := main.c \
 		get_line.c \
 		make_color.c \
 		cmp_float.c \
+		create_comp.c \
 		m_create.c \
 		m_det.c \
 		m_op.c \
 		m_transform.c \
+		lighting.c \
+		material.c \
 		set_transform.c \
 		tup_op.c \
 		tup_s_op.c \
+		tup_reflect.c \
+		tup_create.c \
+		c_create.c \
+		c_op.c \
 		ray_op.c \
 		alloc_mem.c \
 		dealloc_mem.c \
@@ -78,13 +85,17 @@ VPATH := ./src/arg_integrity/\
 		 ./src/main/\
 		 ./src/math_op/\
 		 ./src/alloc_mem/\
-		 ./src/ray/
+		 ./src/ray/\
+		 ./src/light/\
+		 ./src/color/\
+		 ./src/camera/
 
+#$(CC) $(INCLUDE) $(CHECKFLAG) -c $^ -o $@
 all: $(NAME)
 
 $(DIR_OBJ)%.o: %.c
 	@mkdir -p $(@D)
-	$(CC) $(INCLUDE) $(CHECKFLAG) -c $^ -o $@
+	$(CC) $(INCLUDE) -c $^ -o $@
 
 $(LIBFT):
 	make -C libft

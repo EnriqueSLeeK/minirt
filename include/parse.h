@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 16:28:49 by ensebast          #+#    #+#             */
-/*   Updated: 2022/09/24 22:49:13 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/24 15:22:22 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ int		next_segment(char *line);
 int		find_char(char *line, char c);
 
 // Scenario
-int		parse_light(char *line, t_light *elem);
+int		parse_light(char *line, t_light **elem);
 int		parse_camera(char *line, t_camera *elem);
 int		parse_ambient_light(char *line, t_ambient *elem);
 
 // Format
-int		parse_plane(char *line, t_elem *elem);
-int		parse_sphere(char *line, t_elem *elem);
-int		parse_cylinder(char *line, t_elem *elem);
+int		parse_plane(char *line, t_elem **elem);
+int		parse_sphere(char *line, t_elem **elem);
+int		parse_cylinder(char *line, t_elem **elem);
 
 // Micro regex
 int		match_exp(char *regexp, char *text);

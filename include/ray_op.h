@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util.h                                             :+:      :+:    :+:   */
+/*   ray_op.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 16:44:06 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/25 21:55:22 by ensebast         ###   ########.br       */
+/*   Created: 2022/11/23 00:18:45 by ensebast          #+#    #+#             */
+/*   Updated: 2022/11/23 22:33:05 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTIL_H
-# define UTIL_H
+#ifndef RAY_OP_H
+# define RAY_OP_H
 
-# include "struct.h"
+t_tuple	position(t_ray *ray, double t);
 
-// Memory alloc
-int		alloc_mem(t_list_elem *buff, int *count);
-void	dealloc_mem(t_list_elem *buff);
-void	dealloc_list(t_intersect *inter);
+t_ray	transform_ray(t_ray *ray, t_matrix *transform);
 
-// Aux functions
-char	*get_line(int fd);
-int		deg_to_rad(double *fov);
-int		make_color(double r, double g, double b);
-int		cmp_float(double f, double s);
+t_ray	ray_to_object_space(t_ray *ray, t_matrix *transform);
 
 #endif
