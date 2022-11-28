@@ -6,16 +6,11 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 17:10:12 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/27 23:17:16 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/27 23:31:03 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-void print_t(char *n, double *p)
-{
-	printf("%s: %f %f %f\n", n, p[0], p[1], p[2]);
-}
 
 // orig = Ray origin
 // center = Sphere center

@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 22:07:16 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/27 23:19:07 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/27 23:49:52 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,8 @@ t_intersect			*ray_shoot(t_list_elem *list_elem, t_ray *ray);
 // Intersection functions
 // Sphere:
 void				intersect_s(t_elem *elem, t_ray *ray, t_intersect_list *i_list);
+// Plane:
+void				intersect_pl(t_elem *elem, t_ray *ray, t_intersect_list *i_list);
 
 // Light ------------------------------------------------
 t_material			material(t_color *color, t_ambient *ambient);

@@ -6,7 +6,7 @@
 #    By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/28 00:46:12 by ensebast          #+#    #+#              #
-#    Updated: 2022/11/27 23:20:32 by ensebast         ###   ########.br        #
+#    Updated: 2022/11/27 23:49:24 by ensebast         ###   ########.br        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,8 @@ FILES_M := main.c \
 		deg_to_rad.c \
 		intersect.c \
 		raytrace.c \
-		sphere.c
+		sphere.c \
+		plane.c
 
 FILE_OBJ := $(FILES_M:c=o)
 

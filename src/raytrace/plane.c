@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   macro.h                                            :+:      :+:    :+:   */
+/*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 19:29:34 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/28 00:17:43 by ensebast         ###   ########.br       */
+/*   Created: 2022/11/27 23:30:18 by ensebast          #+#    #+#             */
+/*   Updated: 2022/11/27 23:49:15 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MACRO_H
-# define MACRO_H
+#include "minirt.h"
 
-# define WIDTH 500
-# define HEIGHT 250
+void	intersect_pl(t_elem *elem, t_ray *ray, t_intersect_list *i_list)
+{
+	double	t;
 
-# define ESC 65307
-
-# define EPSILON 0.00001
-
-#endif
+	if (fabs(ray -> dir.tup[1]) < EPSILON)
+		return ;
+	t = (-ray -> orig.tup[1]) / ray -> dir.tup[1];
+	add_intersect(i_list, elem, t);
+}

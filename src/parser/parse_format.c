@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 19:53:08 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/27 00:46:59 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/28 01:49:18 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ int	parse_sphere(char *line, t_elem **shape)
 		&& range_double_check(elem -> color.tup, 3, 0.0, 1.0)
 		&& parse_and_move(&line, 0, 0, NULL) == -1)
 	{
-		elem -> transform = translation(elem -> coord.tup[0],
+		aux = translation(elem -> coord.tup[0],
 				elem -> coord.tup[1],
 				elem -> coord.tup[2]);
 		radius = elem -> diameter * 0.5;
-		set_transform(elem, m_mult(elem -> transform,
-					scaling(radius, radius, radius)));
+		aux = m_mult(aux, scaling(radius, radius, radius));
+		set_transform(elem, aux);
 		*shape += 1;
 		return (1);
 	}
@@ -41,10 +41,11 @@ int	parse_sphere(char *line, t_elem **shape)
 
 int	parse_plane(char *line, t_elem **shape)
 {
-	t_elem	*elem;
+	t_elem		*elem;
+	t_matrix	aux;
 
 	elem = *shape;
-	elem -> transform = create_identity_m();
+	elem -> intersect = intersect_pl;
 	if (parse_and_move(&line, 3, elem -> coord.tup, parse_float)
 		&& parse_and_move(&line, 3, elem -> norm_vec.tup, parse_float)
 		&& range_double_check(elem -> norm_vec.tup, 3, -1.0, 1.0)
@@ -52,6 +53,15 @@ int	parse_plane(char *line, t_elem **shape)
 		&& range_double_check(elem -> color.tup, 3, 0.0, 1.0)
 		&& parse_and_move(&line, 0, 0, NULL) == -1)
 	{
+		aux = translation(elem -> coord.tup[0],
+				elem -> coord.tup[1],
+				elem -> coord.tup[2]);
+		/*
+		aux = rotation_z(asin(elem->norm_vec.tup[0]));
+		aux = m_mult(rotation_x(asin(elem->norm_vec.tup[1])), aux);
+		aux = m_mult(rotation_y(asin(elem->norm_vec.tup[2])), aux);
+				*/
+		set_transform(elem, aux);
 		*shape += 1;
 		return (1);
 	}

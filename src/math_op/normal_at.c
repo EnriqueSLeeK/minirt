@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 23:16:49 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/27 23:17:21 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/28 00:15:41 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,9 @@ t_tuple	normal_at(t_elem *elem, t_tuple w_p)
 	world_normal = m_mult_t(elem->inv_transform_transpose, obj_normal);
 	world_normal.tup[3] = 0;
 	return (tnorm(world_normal));
+}
+
+t_tuple	normal_pl(t_elem *elem, t_tuple w_p)
+{
+	return (vector(0, 1, 0));
 }

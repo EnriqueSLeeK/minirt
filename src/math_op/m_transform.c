@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 02:59:14 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/26 18:18:40 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/28 01:22:42 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ t_matrix	rotation_y(double rad)
 {
 	t_matrix	rot_y;
 
+	printf("rad: %f\n", rad);
 	rot_y = create_identity_m();
 	rot_y.m[0][0] = cos(rad);
 	rot_y.m[0][2] = sin(rad);
