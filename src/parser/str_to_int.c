@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 01:41:52 by ensebast          #+#    #+#             */
-/*   Updated: 2022/09/13 01:05:54 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/26 02:28:13 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int	str_to_int(char *i_str)
 	while (*i_str)
 	{
 		num = (num * 10) + *i_str - '0';
-		if (num % 10 != (*i_str - '0'))
-			return (-1);
 		i_str += 1;
 	}
 	num *= sign;

@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 16:58:08 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/25 22:45:13 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/27 23:08:37 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,9 @@
 
 int	basic_check(int argc, char **argv)
 {
-	if (argc != 2)
+	if (argc != 2 || extension_check(*(argv + 1)))
 	{
-		write(2, "Usage: ./minirt <input file>\n", 29);
-		write(2, "Note: The input file must have the rt extension\n", 48);
-		return (1);
-	}
-	if (extension_check(*(argv + 1)))
-	{
-		write(2, "Bad extension\n", 14);
+		write(2, "Error\n", 6);
 		return (1);
 	}
 	return (0);
@@ -95,7 +89,9 @@ static int	check_count_lines(int *count, char *file)
 		buff = get_line(fd);
 	}
 	close(fd);
-	return (0);
+	if (count[1] < 2 && count[2] < 2 && count[3] < 2)
+		return (0);
+	return (1);
 }
 
 // 1. Basic checks: extension and arg quant check
@@ -108,15 +104,9 @@ int	main(int argc, char **argv)
 	t_list_elem	list_elem;
 
 	ft_memset(list_elem.quant, 0, sizeof(int) * 4);
-	ft_memset(&list_elem, 0, sizeof(t_list_elem));
-	if (basic_check(argc, argv))
-		return (1);
-	if (check_count_lines(list_elem.quant, argv[1]))
-	{
-		write(2, "Error: empty file or bad file\n", 30);
-		return (1);
-	}
-	if (alloc_mem(&list_elem, list_elem.quant)
+	if (basic_check(argc, argv)
+		|| check_count_lines(list_elem.quant, argv[1])
+		|| alloc_mem(&list_elem, list_elem.quant)
 		|| mlx_prepare(&list_elem.mlx_inf))
 	{
 		write(2, "Error\n", 6);
@@ -124,7 +114,7 @@ int	main(int argc, char **argv)
 	}
 	if (parse_lines(*(argv + 1), &list_elem))
 	{
-		write(2, "Error\n", 6);
+		write(2, "Error: Error at parsing\n", 6);
 		dealloc_mem(&list_elem);
 		return (1);
 	}

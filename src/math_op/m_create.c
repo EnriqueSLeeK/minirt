@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 10:12:43 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/23 00:53:35 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/26 11:34:35 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,30 @@ t_matrix	create_m(int dim)
 	return (m);
 }
 
-// Take a pre-alloc matrix then contruct a ident m
+t_matrix	create_identity_m(void)
+{
+	t_matrix	matrix;
+	int			i;
+	int			k;
+
+	i = 0;
+	k = 0;
+	matrix.size = 4;
+	while (i < matrix.size)
+	{
+		while (k < matrix.size)
+		{
+			matrix.m[i][k] = 0;
+			if (i == k)
+				matrix.m[i][k] = 1;
+			k++;
+		}
+		i++;
+		k = 0;
+	}
+	return (matrix);
+}
+
 void	identity_m(t_matrix *matrix)
 {
 	int	i;

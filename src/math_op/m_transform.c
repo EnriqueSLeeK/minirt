@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 02:59:14 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/22 23:02:35 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/26 18:18:40 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ t_matrix	translation(double x, double y, double z)
 {
 	t_matrix	translation_m;
 
-	translation_m = create_m(4);
-	identity_m(&translation_m);
+	translation_m = create_identity_m();
 	translation_m.m[0][3] = x;
 	translation_m.m[1][3] = y;
 	translation_m.m[2][3] = z;
@@ -32,8 +31,7 @@ t_matrix	scaling(double x, double y, double z)
 {
 	t_matrix	scaling_m;
 
-	scaling_m = create_m(4);
-	identity_m(&scaling_m);
+	scaling_m = create_identity_m();
 	scaling_m.m[0][0] = x;
 	scaling_m.m[1][1] = y;
 	scaling_m.m[2][2] = z;
@@ -44,12 +42,11 @@ t_matrix	rotation_x(double rad)
 {
 	t_matrix	rot_x;
 
-	rot_x = create_m(4);
-	identity_m(&rot_x);
+	rot_x = create_identity_m();
 	rot_x.m[1][1] = cos(rad);
 	rot_x.m[1][2] = - sin(rad);
-	rot_x.m[2][2] = cos(rad);
 	rot_x.m[2][1] = sin(rad);
+	rot_x.m[2][2] = cos(rad);
 	return (rot_x);
 }
 
@@ -57,8 +54,7 @@ t_matrix	rotation_y(double rad)
 {
 	t_matrix	rot_y;
 
-	rot_y = create_m(4);
-	identity_m(&rot_y);
+	rot_y = create_identity_m();
 	rot_y.m[0][0] = cos(rad);
 	rot_y.m[0][2] = sin(rad);
 	rot_y.m[2][0] = - sin(rad);
@@ -70,8 +66,7 @@ t_matrix	rotation_z(double rad)
 {
 	t_matrix	rot_z;
 
-	rot_z = create_m(4);
-	identity_m(&rot_z);
+	rot_z = create_identity_m();
 	rot_z.m[0][0] = cos(rad);
 	rot_z.m[0][1] = - sin(rad);
 	rot_z.m[1][0] = sin(rad);

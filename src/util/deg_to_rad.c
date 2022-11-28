@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 16:26:22 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/20 18:14:43 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/26 15:38:40 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int	deg_to_rad(double *fov)
 {
-	*fov = (*fov * M_PI) / 180.0;
+	*fov = ((*fov) / 180.0) * M_PI;
 	return (1);
 }

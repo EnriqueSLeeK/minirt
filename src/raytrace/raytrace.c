@@ -6,41 +6,34 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 15:58:49 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/25 23:59:58 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/27 23:07:32 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-
 void	raytrace(t_list_elem *list_elem)
 {
-	/*
-	t_ray	ray;
-	ray.dir = create_t(0, 0, 1, 0);
-	ray.orig = create_t(0, 0, -5, 1);
-	set_transform(&list_elem -> elem[0], scaling(0.5, 0.5, 0.5));
-	t_matrix ident = create_m(4);
-	identity_m(&ident);
-	set_transform(&list_elem -> elem[1], ident);
-	ray_shoot(list_elem, &ray);
-	*/
 	start_raytrace(list_elem);
+	printf("DONE\n");
 }
 
 // Multiple source of light support
 static int	shade_hit(t_list_elem *list_elem, t_computation *comp)
 {
 	int		i;
+	int		in_shadow;
 	t_color	buff;
 	t_color	color;
 
 	i = -1;
 	color = create_c(0, 0, 0);
+	in_shadow = is_shadowed(list_elem, comp->over_point);
 	while (++i < list_elem -> quant[1])
 	{
-		buff = lighting(&comp->elem->material, &list_elem -> light[i], comp);
-		color = cadd(&color, &buff);
+		buff = lighting(&comp->elem->material,
+				&list_elem -> light[i], comp, in_shadow);
+		color = cadd(color, buff);
 	}
 	return (make_color(color.tup[0], color.tup[1], color.tup[2]));
 }
@@ -73,18 +66,16 @@ void	start_raytrace(t_list_elem *list_elem)
 
 	coord[0] = -1;
 	coord[1] = -1;
-	ray.orig = list_elem -> camera -> coord;
-	while (coord[0]++ < HEIGHT)
+	while (++coord[0] < HEIGHT - 1)
 	{
-		while (coord[1]++ < WIDTH)
+		while (++coord[1] < WIDTH - 1)
 		{
-			ray.dir = create_t(((coord[0] / WIDTH) * 2) - 1,
-					((coord[1] / HEIGHT) * 2) - 1, 1, 0);
-			ray.dir = tnorm(&ray.dir);
+			ray = ray_for_pixel(list_elem -> camera,
+					coord[1], coord[0]);
 			hit_elem = ray_shoot(list_elem, &ray);
 			coloring(list_elem, &ray, hit_elem, coord);
 		}
-		coord[1] = 0;
+		coord[1] = -1;
 	}
 }
 
@@ -98,7 +89,7 @@ t_intersect	*ray_shoot(t_list_elem *list_elem, t_ray *ray)
 	elem = list_elem -> elem;
 	while (i < list_elem -> quant[0])
 	{
-		obj_ray = ray_to_object_space(ray, &list_elem -> elem[i].transform);
+		obj_ray = transform_ray(ray, &list_elem -> elem[i].inv_transform);
 		elem[i].intersect(&elem[i], &obj_ray, list_elem -> intersect_l);
 		i++;
 	}

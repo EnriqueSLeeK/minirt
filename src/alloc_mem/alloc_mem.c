@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 17:02:08 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/25 23:17:47 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/26 02:42:47 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,11 @@
  */
 int	alloc_mem(t_list_elem *elem_ptr, int *quant)
 {
-	if (quant[1] < 2 && quant[2] < 2 && quant[3] < 2)
-	{
-		elem_ptr -> elem = malloc(sizeof(t_elem) * quant[0]);
-		elem_ptr -> light = malloc(sizeof(t_light) * quant[1]);
-		elem_ptr -> ambient = malloc(sizeof(t_ambient) * quant[2]);
-		elem_ptr -> camera = malloc(sizeof(t_camera) * quant[3]);
-		elem_ptr -> intersect_l = create_list(32);
-	}
-	else
-		return (1);
+	elem_ptr -> elem = malloc(sizeof(t_elem) * quant[0]);
+	elem_ptr -> light = malloc(sizeof(t_light) * quant[1]);
+	elem_ptr -> ambient = malloc(sizeof(t_ambient) * quant[2]);
+	elem_ptr -> camera = malloc(sizeof(t_camera) * quant[3]);
+	elem_ptr -> intersect_l = create_list(32);
 	if (!(elem_ptr -> elem && elem_ptr -> light
 		&& elem_ptr -> ambient && elem_ptr -> camera))
 	{

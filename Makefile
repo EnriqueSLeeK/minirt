@@ -6,7 +6,7 @@
 #    By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/28 00:46:12 by ensebast          #+#    #+#              #
-#    Updated: 2022/11/25 23:54:49 by ensebast         ###   ########.br        #
+#    Updated: 2022/11/27 23:20:32 by ensebast         ###   ########.br        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,8 @@ FILES_M := main.c \
 		m_det.c \
 		m_op.c \
 		m_transform.c \
+		m_orientation.c \
+		shadow.c \
 		lighting.c \
 		material.c \
 		set_transform.c \
@@ -62,7 +64,9 @@ FILES_M := main.c \
 		tup_create.c \
 		c_create.c \
 		c_op.c \
+		normal_at.c \
 		ray_op.c \
+		ray_for_pixel.c \
 		alloc_mem.c \
 		dealloc_mem.c \
 		deg_to_rad.c \
@@ -95,7 +99,7 @@ all: $(NAME)
 
 $(DIR_OBJ)%.o: %.c
 	@mkdir -p $(@D)
-	$(CC) $(INCLUDE) -c $^ -o $@
+	$(CC) $(INCLUDE) -o3 -c $^ -o $@
 
 $(LIBFT):
 	make -C libft
@@ -104,7 +108,7 @@ $(LIB):
 	make -C ./minilibx-linux/
 
 $(NAME): $(OBJ_M) $(LIBFT) $(LIB)
-	$(CC) $(CHECKFLAG) $(CFLAGS) -o $@ $(OBJ_M) $(LIBFT) $(LIB)
+	$(CC) -g $(CHECKFLAG) $(CFLAGS) -o $@ $(OBJ_M) $(LIBFT) $(LIB)
 
 clean:
 	$(RM) $(DIR_OBJ)

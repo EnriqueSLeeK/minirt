@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 19:33:59 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/25 23:15:10 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/27 22:33:14 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct	s_intersect_list
 // Structure camera
 typedef struct s_camera
 {
+	t_matrix			inv_transform;
 	t_matrix			transform;
 	t_tuple				norm_vec;
 	t_tuple				coord;
@@ -109,6 +110,8 @@ typedef struct s_elem
 	t_tuple				coord;
 	t_tuple				norm_vec;
 	t_matrix			transform;
+	t_matrix			inv_transform;
+	t_matrix			inv_transform_transpose;
 	t_material			material;
 	double				diameter;
 	double				height;
@@ -155,6 +158,7 @@ typedef struct s_computation {
 	t_tuple	position;
 	t_tuple	normalv;
 	t_tuple	eyev;
+	t_tuple	over_point;
 	double	t;
 	int		inside;
 } t_computation;
