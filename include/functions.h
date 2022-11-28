@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 22:07:16 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/27 23:49:52 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/28 16:45:38 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,10 @@ void				parse_int(void **buff, char *i_str);
 // Math_op ----------------------------------------------
 
 // Calculate the normal vector
+//
 t_tuple				normal_at(t_elem *elem, t_tuple w_p);
+t_tuple				normal_sp(t_tuple obj_p);
+t_tuple				normal_pl(t_tuple obj_p);
 
 // * Color ---------
 t_color				cmult(t_color c_one, t_color c_two);

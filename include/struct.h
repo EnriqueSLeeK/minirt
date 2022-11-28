@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 19:33:59 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/28 00:19:05 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/28 16:44:38 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ typedef struct s_elem
 	t_material			material;
 	double				diameter;
 	double				height;
+	t_tuple				(*local_normal)(t_tuple obj_point);
 	void				(*intersect)(struct s_elem *, t_ray *, t_intersect_list *);
 } t_elem;
 

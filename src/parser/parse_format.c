@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 19:53:08 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/28 01:49:18 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/28 16:46:46 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@ int	parse_sphere(char *line, t_elem **shape)
 	t_matrix	aux;
 
 	elem = *shape;
-	elem -> intersect = intersect_s;
 	if (parse_and_move(&line, 3, elem -> coord.tup, parse_float)
 		&& parse_and_move(&line, 1, &(elem -> diameter), parse_float)
 		&& parse_and_move(&line, 3, elem -> color.tup, parse_color)
 		&& range_double_check(elem -> color.tup, 3, 0.0, 1.0)
 		&& parse_and_move(&line, 0, 0, NULL) == -1)
 	{
+		elem -> intersect = intersect_s;
+		elem -> local_normal = normal_sp;
 		aux = translation(elem -> coord.tup[0],
 				elem -> coord.tup[1],
 				elem -> coord.tup[2]);
@@ -45,7 +46,6 @@ int	parse_plane(char *line, t_elem **shape)
 	t_matrix	aux;
 
 	elem = *shape;
-	elem -> intersect = intersect_pl;
 	if (parse_and_move(&line, 3, elem -> coord.tup, parse_float)
 		&& parse_and_move(&line, 3, elem -> norm_vec.tup, parse_float)
 		&& range_double_check(elem -> norm_vec.tup, 3, -1.0, 1.0)
@@ -53,6 +53,8 @@ int	parse_plane(char *line, t_elem **shape)
 		&& range_double_check(elem -> color.tup, 3, 0.0, 1.0)
 		&& parse_and_move(&line, 0, 0, NULL) == -1)
 	{
+		elem -> intersect = intersect_pl;
+		elem -> local_normal = normal_pl;
 		aux = translation(elem -> coord.tup[0],
 				elem -> coord.tup[1],
 				elem -> coord.tup[2]);

@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 19:53:35 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/27 01:43:09 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/28 16:29:34 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	parse_camera(char *line, t_camera *elem)
 	{
 		camera_compute(elem, WIDTH, HEIGHT);
 		up = get_up(elem -> norm_vec);
+		double *t = up.tup;
 		set_camera_transform(elem,
 				view_transform(elem->coord, elem -> norm_vec, up));
 		return (1);
