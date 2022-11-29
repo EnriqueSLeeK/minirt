@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 19:53:35 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/28 16:29:34 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/28 20:51:25 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	parse_light(char *line, t_light **light)
 		&& parse_and_move(&line, 3, elem -> color.tup, parse_color)
 		&& range_double_check(elem -> color.tup, 3, 0, 1.0))
 	{
+		elem->color = csmult(elem->color, elem->light_ratio);
 		*light += 1;
 		return (1);
 	}
@@ -42,7 +43,6 @@ int	parse_camera(char *line, t_camera *elem)
 	{
 		camera_compute(elem, WIDTH, HEIGHT);
 		up = get_up(elem -> norm_vec);
-		double *t = up.tup;
 		set_camera_transform(elem,
 				view_transform(elem->coord, elem -> norm_vec, up));
 		return (1);

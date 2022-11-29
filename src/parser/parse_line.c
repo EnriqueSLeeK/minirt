@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 17:04:49 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/24 15:21:24 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/28 17:15:37 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int	parse_line(char *line, t_list_elem *elem)
 	if (cmp_name(line, "L")
 			&& set_w(&elem -> light -> coord, NULL))
 		return (parse_light(line, &elem -> light));
-	elem -> elem -> material = material(&elem -> elem -> color, elem -> ambient);
 	if (cmp_name(line, "sp")
 			&& set_w(&elem -> elem -> coord, &elem -> elem -> norm_vec)
 			&& set_name(elem -> elem -> type, "sp"))

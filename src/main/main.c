@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 16:58:08 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/27 23:08:37 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/28 17:18:14 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ int	main(int argc, char **argv)
 		dealloc_mem(&list_elem);
 		return (1);
 	}
+	set_material(&list_elem);
 	raytrace(&list_elem);
 	mlx_start(&list_elem);
 

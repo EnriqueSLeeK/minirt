@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 19:33:59 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/28 16:44:38 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/28 20:19:13 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ typedef struct s_material
 {
 	t_color		*color;
 	t_ambient	*ambient;
-	double		specular;
 	double		diffuse;
+	double		specular;
 	double		shininess;
 } t_material;
 
@@ -113,10 +113,13 @@ typedef struct s_elem
 	t_matrix			inv_transform;
 	t_matrix			inv_transform_transpose;
 	t_material			material;
+	double				max;
+	double				min;
 	double				diameter;
 	double				height;
 	t_tuple				(*local_normal)(t_tuple obj_point);
-	void				(*intersect)(struct s_elem *, t_ray *, t_intersect_list *);
+	void				(*intersect)(struct s_elem *,
+			t_ray *, t_intersect_list *);
 } t_elem;
 
 // List of elements

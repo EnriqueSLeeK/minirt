@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 23:16:49 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/28 16:47:31 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/28 19:47:19 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,9 @@ t_tuple	normal_pl(t_tuple obj_p)
 t_tuple	normal_sp(t_tuple obj_p)
 {
 	return (tsub(obj_p, point(0, 0, 0)));
+}
+
+t_tuple	normal_cy(t_tuple obj_p)
+{
+	return (vector(obj_p.tup[0], 0, obj_p.tup[2]));
 }

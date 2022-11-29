@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 22:07:16 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/28 16:45:38 by ensebast         ###   ########.br       */
+/*   Updated: 2022/11/28 19:49:46 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void				parse_int(void **buff, char *i_str);
 t_tuple				normal_at(t_elem *elem, t_tuple w_p);
 t_tuple				normal_sp(t_tuple obj_p);
 t_tuple				normal_pl(t_tuple obj_p);
+t_tuple				normal_cy(t_tuple obj_p);
 
 // * Color ---------
 t_color				cmult(t_color c_one, t_color c_two);
@@ -193,8 +194,11 @@ t_intersect			*ray_shoot(t_list_elem *list_elem, t_ray *ray);
 void				intersect_s(t_elem *elem, t_ray *ray, t_intersect_list *i_list);
 // Plane:
 void				intersect_pl(t_elem *elem, t_ray *ray, t_intersect_list *i_list);
+// Cylinder:
+void				intersect_cy(t_elem *elem, t_ray *ray, t_intersect_list *i_list);
 
 // Light ------------------------------------------------
+void				set_material(t_list_elem *list_elem);
 t_material			material(t_color *color, t_ambient *ambient);
 t_color				lighting(t_material *m, t_light *light, t_computation *info, int in_shadow);
 int					is_shadowed(t_list_elem *world, t_tuple point);
