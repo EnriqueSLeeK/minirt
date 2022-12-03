@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 16:58:08 by ensebast          #+#    #+#             */
-/*   Updated: 2022/12/03 15:28:26 by ensebast         ###   ########.br       */
+/*   Updated: 2022/12/03 18:30:10 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,8 @@ int	main(int argc, char **argv)
 	if (parse_lines(*(argv + 1), &list_elem))
 	{
 		write(2, "Error: Error at parsing\n", 24);
-		close_prog((void *)(&list_elem), 1);
+		dealloc_all_mem(&list_elem, &list_elem.mlx_inf);
+		return (1);
 	}
 	set_material(&list_elem);
 	start_raytrace(&list_elem);
