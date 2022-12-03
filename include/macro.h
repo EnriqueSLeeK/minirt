@@ -6,15 +6,15 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 19:29:34 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/28 00:17:43 by ensebast         ###   ########.br       */
+/*   Updated: 2022/12/01 22:55:45 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MACRO_H
 # define MACRO_H
 
-# define WIDTH 500
-# define HEIGHT 250
+# define WIDTH 1000
+# define HEIGHT 800
 
 # define ESC 65307
 

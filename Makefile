@@ -6,11 +6,11 @@
 #    By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/28 00:46:12 by ensebast          #+#    #+#              #
-#    Updated: 2022/11/28 19:52:33 by ensebast         ###   ########.br        #
+#    Updated: 2022/12/02 20:54:10 by ensebast         ###   ########.br        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME := minirt
+NAME := miniRT
 
 INCLUDE := -I ./include/ -I ./libft -I ./minilibx-linux/
 
@@ -34,6 +34,8 @@ FILES_M := main.c \
 		micro_regex.c \
 		segment_checker.c \
 		util_check.c \
+		prepare_ambient.c \
+		prepare_elem.c \
 		parse_ambient.c \
 		parse_format.c \
 		parse_line.c \
@@ -94,7 +96,8 @@ VPATH := ./src/arg_integrity/\
 		 ./src/ray/\
 		 ./src/light/\
 		 ./src/color/\
-		 ./src/camera/
+		 ./src/camera/\
+		 ./src/prepare/
 
 #$(CC) $(INCLUDE) $(CHECKFLAG) -c $^ -o $@
 all: $(NAME)

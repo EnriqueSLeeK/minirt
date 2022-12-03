@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 16:58:08 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/28 17:18:14 by ensebast         ###   ########.br       */
+/*   Updated: 2022/12/03 18:30:10 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 int	basic_check(int argc, char **argv)
 {
 	if (argc != 2 || extension_check(*(argv + 1)))
-	{
-		write(2, "Error\n", 6);
 		return (1);
-	}
 	return (0);
 }
 
@@ -109,20 +106,17 @@ int	main(int argc, char **argv)
 		|| alloc_mem(&list_elem, list_elem.quant)
 		|| mlx_prepare(&list_elem.mlx_inf))
 	{
-		write(2, "Error\n", 6);
+		write(2, "Error: Error at checking or alloc memory\n", 6);
 		return (1);
 	}
 	if (parse_lines(*(argv + 1), &list_elem))
 	{
-		write(2, "Error: Error at parsing\n", 6);
-		dealloc_mem(&list_elem);
+		write(2, "Error: Error at parsing\n", 24);
+		dealloc_all_mem(&list_elem, &list_elem.mlx_inf);
 		return (1);
 	}
 	set_material(&list_elem);
-	raytrace(&list_elem);
+	start_raytrace(&list_elem);
 	mlx_start(&list_elem);
-
-	// Testing
-	dealloc_mem(&list_elem);
 	return (0);
 }

@@ -1,3 +1,1 @@
-
-make
-./minirt test/p.rt
+./miniRT test/p.rt

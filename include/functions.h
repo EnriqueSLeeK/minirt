@@ -6,15 +6,16 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 22:07:16 by ensebast          #+#    #+#             */
-/*   Updated: 2022/11/28 19:49:46 by ensebast         ###   ########.br       */
+/*   Updated: 2022/12/03 18:27:49 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	FUNCTIONS_H
+#ifndef FUNCTIONS_H
 # define FUNCTIONS_H
 
 // CAMERA -----------------------------------------------
-void				camera_compute(t_camera *camera, double h_size, double v_size);
+void				camera_compute(t_camera *camera, double fov,
+						double h_size, double v_size);
 t_tuple				get_up(t_tuple orientation);
 
 // File Checker -----------------------------------------
@@ -51,11 +52,23 @@ int					check_and_move(char **line, int nelem,
 int					extension_check(char *file);
 
 // General checker
-int					check_segment(char *segment, int cycle, int limit, int (*checker)(char *));
+int					check_segment(char *segment, int cycle,
+						int limit, int (*checker)(char *));
+
+// Prepare ----------------------------------------------
+// Shapes
+void				prep_cy(t_aux_parse *info, t_elem *elem);
+void				prep_pl(t_aux_parse *info, t_elem *elem);
+void				prep_sp(t_aux_parse *info, t_elem *elem);
+
+// Ambient
+void				prep_ambient(t_aux_parse *info, t_ambient *elem);
+void				prep_camera(t_aux_parse *info, t_camera *elem);
+void				prep_light(t_aux_parse *info, t_light *elem);
 
 // Parse ------------------------------------------------
 // Line parse
-int					parse_line(char *, t_list_elem *);
+int					parse_line(char *line, t_list_elem *list_elem);
 
 // Util
 int					next_segment(char *line);
@@ -84,14 +97,14 @@ int					parse_segment(char *segment, int cycle, void *buff,
 
 // Value range check
 int					range_double_check(double *val, int n,
-			double lower, double upper);
+						double lower, double upper);
 
 int					range_int_check(int *val, int n,
-			int lower, int upper);
+						int lower, int upper);
 
 // Convert char to int
-int					str_to_int(char *);
-double				str_to_double(char *);
+int					str_to_int(char *num);
+double				str_to_double(char *num);
 
 // Parse numbers
 void				parse_float(void **buff, char *d_str);
@@ -103,9 +116,9 @@ void				parse_int(void **buff, char *i_str);
 // Calculate the normal vector
 //
 t_tuple				normal_at(t_elem *elem, t_tuple w_p);
-t_tuple				normal_sp(t_tuple obj_p);
-t_tuple				normal_pl(t_tuple obj_p);
-t_tuple				normal_cy(t_tuple obj_p);
+void				normal_sp(t_elem *elem, t_tuple obj_p, t_tuple *tup);
+void				normal_pl(t_elem *elem, t_tuple obj_p, t_tuple *tup);
+void				normal_cy(t_elem *elem, t_tuple obj_p, t_tuple *tup);
 
 // * Color ---------
 t_color				cmult(t_color c_one, t_color c_two);
@@ -120,6 +133,7 @@ t_color				create_c(double r, double g, double b);
 // Matrix creation
 t_matrix			create_m(int dim);
 t_matrix			create_identity_m(void);
+t_matrix			shape_orientation(t_tuple orient_vec);
 
 // Util function
 void				matrix_cpy(t_matrix *m_d, t_matrix *m_s);
@@ -174,7 +188,8 @@ t_tuple				point(double x, double y, double z);
 // Raytrace ---------------------------------------------
 // Intersection list ----
 void				list_cpy(t_intersect *dst, t_intersect *src, int n);
-void				add_intersect(t_intersect_list *ptr, t_elem *elem, double t);
+void				add_intersect(t_intersect_list *ptr, t_elem *elem,
+						double t);
 void				resize_list(t_intersect_list *list);
 
 t_intersect_list	*create_list(int size);
@@ -183,7 +198,6 @@ t_intersect			*hit(t_intersect_list *list);
 // Computation contructor
 t_computation		prepare_computation(t_intersect *inter, t_ray *ray);
 
-
 // ray shooting and hit in general
 void				raytrace(t_list_elem *elem_list);
 void				start_raytrace(t_list_elem *elem_list);
@@ -191,16 +205,20 @@ t_intersect			*ray_shoot(t_list_elem *list_elem, t_ray *ray);
 
 // Intersection functions
 // Sphere:
-void				intersect_s(t_elem *elem, t_ray *ray, t_intersect_list *i_list);
+void				intersect_s(t_elem *elem, t_ray *ray,
+						t_intersect_list *i_list);
 // Plane:
-void				intersect_pl(t_elem *elem, t_ray *ray, t_intersect_list *i_list);
+void				intersect_pl(t_elem *elem, t_ray *ray,
+						t_intersect_list *i_list);
 // Cylinder:
-void				intersect_cy(t_elem *elem, t_ray *ray, t_intersect_list *i_list);
+void				intersect_cy(t_elem *elem, t_ray *ray,
+						t_intersect_list *i_list);
 
 // Light ------------------------------------------------
 void				set_material(t_list_elem *list_elem);
 t_material			material(t_color *color, t_ambient *ambient);
-t_color				lighting(t_material *m, t_light *light, t_computation *info, int in_shadow);
+t_color				lighting(t_material *m, t_light *light,
+						t_computation *info, int in_shadow);
 int					is_shadowed(t_list_elem *world, t_tuple point);
 
 // Ray --------------------------------------------------
@@ -213,11 +231,14 @@ t_ray				ray_for_pixel(t_camera *camera, double px, double py);
 
 // MLX --------------------------------------------------
 // Mlx preparation
-int					mlx_prepare(t_mlx *);
+int					mlx_prepare(t_mlx *mlx);
 
 // Key event hook
 int					key_hook(int keycode, void *param);
 int					mlx_key_event(int keycode, void *param);
+
+// Restore the image to the window when the focus return
+int					mlx_redraw(void *elem_list);
 
 // Free everything and exit
 int					close_prog(void *param);
@@ -232,11 +253,12 @@ void				put_pixel(t_img *img, int x, int y, int color);
 // Memory alloc
 int					alloc_mem(t_list_elem *buff, int *count);
 void				dealloc_mem(t_list_elem *buff);
-void				dealloc_list(t_intersect *inter);
+void				dealloc_all_mem(t_list_elem *elem_list, t_mlx *mlx);
 
 // Aux functions
 char				*get_line(int fd);
 int					deg_to_rad(double *fov);
 int					make_color(double r, double g, double b);
 int					cmp_float(double f, double s);
+
 #endif
