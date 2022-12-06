@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct.h                                           :+:      :+:    :+:   */
+/*   struct_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 19:33:59 by ensebast          #+#    #+#             */
-/*   Updated: 2022/12/04 23:41:20 by ensebast         ###   ########.br       */
+/*   Updated: 2022/12/05 15:52:53 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCT_H
-# define STRUCT_H
+#ifndef STRUCT_BONUS_H
+# define STRUCT_BONUS_H
 
 typedef struct s_ray		t_ray;
 typedef struct s_elem		t_elem;
 typedef struct s_intersect	t_intersect;
+
+typedef struct s_uv
+{
+	double	u;
+	double	v;
+}	t_uv;
 
 typedef struct s_matrix
 {
@@ -63,6 +69,16 @@ typedef struct s_intersect_list
 	int			n;
 }	t_intersect_list;
 
+typedef struct s_texture
+{
+	void	*img;
+	int		height;
+	int		width;
+	t_img	img_inf;
+	t_color	color_a;
+	t_color	color_b;
+}	t_texture;
+
 // Structure of planes and entities
 // Structure camera
 typedef struct s_camera
@@ -93,7 +109,7 @@ typedef struct s_mlx {
 
 typedef struct s_material
 {
-	t_color		*color;
+	t_color		color;
 	t_color		ambient;
 	double		diffuse;
 	double		specular;
@@ -109,9 +125,12 @@ typedef struct s_elem
 	t_material			material;
 	double				max;
 	double				min;
+	int					pattern_type;
 	void				(*local_normal)(struct s_elem *, t_tuple, t_tuple *);
 	void				(*intersect)(struct s_elem *, t_ray *,
 			t_intersect_list *);
+	void				(*uv_mapping)(t_tuple *o_p, t_uv *uv);
+	t_texture			texture;
 }	t_elem;
 
 // List of elements
@@ -170,6 +189,8 @@ typedef struct s_aux_parse
 	t_color	color;
 	t_tuple	coord;
 	t_tuple	norm_vec;
+	int		pattern_type;
+	char	*filename;
 	double	height;
 	double	diameter;
 	double	light_ratio;

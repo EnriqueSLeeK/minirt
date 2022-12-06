@@ -1,15 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lighting.c                                         :+:      :+:    :+:   */
+/*   lighting_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 20:34:01 by ensebast          #+#    #+#             */
-/*   Updated: 2022/12/05 23:47:42 by ensebast         ###   ########.br       */
+/*   Updated: 2022/12/06 00:20:26 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "minirt.h"
+
+#include "minirt_bonus.h"
 
 t_color	calc_diffuse(t_color eff_c, double mat_diff, double light_dot)
 {
@@ -42,6 +43,15 @@ double	reflection(t_tuple lightv, t_tuple normalv, t_tuple eyev)
 	return (tdot(reflectv, eyev));
 }
 
+static t_color	get_color(t_material *m, t_elem *elem, t_tuple w_p)
+{
+	if (elem->pattern_type == PATTERN_CHECKBOARD)
+		return (pattern_at_uv(elem, w_p));
+	if (elem->pattern_type == PATTERN_BUMP)
+		return (pattern_at_img(elem, w_p));
+	return (m->color);
+}
+
 // light_component
 // 0 = ambient
 // 1 = diffuse
@@ -55,7 +65,8 @@ t_color	lighting(t_material *m, t_light *light,
 	double	light_dot;
 	double	ref_dot_eye;
 
-	eff_c = cmult(*m->color, light->color);
+	eff_c = cmult(get_color(m, info->elem, info->over_point),
+			light->color);
 	final_color = cmult(eff_c, m->ambient);
 	if (in_shadow)
 		return (final_color);

@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_ambient.c                                    :+:      :+:    :+:   */
+/*   parse_ambient_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 19:53:35 by ensebast          #+#    #+#             */
-/*   Updated: 2022/12/04 12:57:44 by ensebast         ###   ########.br       */
+/*   Updated: 2022/12/04 12:58:29 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "minirt_bonus.h"
 
 static int	check_normal(t_tuple t)
 {
 	t.tup[3] = 0;
-	return (cmp_float(tmag(t), 1));
+	return (cmp_float(1, tmag(t)));
 }
 
 // 1- Success | 0- fail

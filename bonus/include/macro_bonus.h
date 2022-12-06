@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   macro_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/28 00:34:54 by coder             #+#    #+#             */
-/*   Updated: 2022/12/06 01:56:32 by ensebast         ###   ########.br       */
+/*   Created: 2022/09/14 19:29:34 by ensebast          #+#    #+#             */
+/*   Updated: 2022/12/04 23:40:45 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#ifndef MACRO_BONUS_H
+# define MACRO_BONUS_H
 
-# include "mlx.h"
-# include "libft.h"
-# include "macro.h"
-# include "struct.h"
-# include "functions.h"
+# define WIDTH 1000
+# define HEIGHT 800
 
-# include <math.h>
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <X11/X.h>
+# define PATTERN_CHECKBOARD 1
+# define PATTERN_BUMP 2
+
+# define CHECKER_W 10
+# define CHECKER_H 6
+
+# define ESC 65307
+
+# define EPSILON 0.00001
 
 #endif

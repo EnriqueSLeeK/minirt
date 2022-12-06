@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 23:47:53 by ensebast          #+#    #+#             */
-/*   Updated: 2022/12/02 21:17:31 by ensebast         ###   ########.br       */
+/*   Updated: 2022/12/03 21:20:48 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	prep_sp(t_aux_parse *info, t_elem *elem)
 
 void	prep_pl(t_aux_parse *info, t_elem *elem)
 {
-	t_matrix	rot;
 	t_matrix	aux;
 
 	elem->color = info->color;

@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 16:58:08 by ensebast          #+#    #+#             */
-/*   Updated: 2022/12/05 23:48:02 by ensebast         ###   ########.br       */
+/*   Updated: 2022/12/05 15:45:20 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "minirt_bonus.h"
 
 int	basic_check(int argc, char **argv)
 {
-	if (argc != 2 || extension_check(*(argv + 1)))
+	if (argc != 2 || extension_check(*(argv + 1), "rt"))
 		return (1);
 	return (0);
 }
@@ -50,7 +50,7 @@ static int	parse_lines(char *file, t_list_elem *elem)
 	buff = get_line(fd);
 	while (buff)
 	{
-		if (parse_line(buff, elem) == 0)
+		if (parse_line(buff, elem, elem->mlx_inf.mlx) == 0)
 		{
 			ptr_restoration(elem, restore, 0);
 			free(buff);
@@ -86,7 +86,7 @@ static int	check_count_lines(int *count, char *file)
 		buff = get_line(fd);
 	}
 	close(fd);
-	if (count[1] < 2 && count[2] < 2 && count[3] < 2)
+	if (count[2] < 2 && count[3] < 2)
 		return (0);
 	return (1);
 }
@@ -115,7 +115,8 @@ int	main(int argc, char **argv)
 		dealloc_all_mem(&list_elem, &list_elem.mlx_inf);
 		return (1);
 	}
-	set_material(&list_elem);
+	set_ambient(list_elem.ambient,
+		list_elem.elem, list_elem.quant[0]);
 	start_raytrace(&list_elem);
 	mlx_start(&list_elem);
 	dealloc_all_mem(&list_elem, &list_elem.mlx_inf);
