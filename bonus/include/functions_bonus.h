@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 22:07:16 by ensebast          #+#    #+#             */
-/*   Updated: 2022/12/06 00:22:00 by ensebast         ###   ########.br       */
+/*   Updated: 2022/12/06 18:56:55 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,7 +258,7 @@ void				set_ambient(t_ambient *ambient, t_elem *elem,
 						int quant);
 t_color				lighting(t_material *m, t_light *light,
 						t_computation *info, int in_shadow);
-int					is_shadowed(t_list_elem *world, t_tuple point);
+int					is_shadowed(t_list_elem *world, t_tuple point, int i);
 
 // Ray --------------------------------------------------
 // Calculate position

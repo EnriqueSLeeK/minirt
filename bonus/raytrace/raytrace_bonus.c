@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 15:58:49 by ensebast          #+#    #+#             */
-/*   Updated: 2022/12/03 21:17:24 by ensebast         ###   ########.br       */
+/*   Updated: 2022/12/06 18:57:14 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ static int	shade_hit(t_list_elem *list_elem, t_computation comp)
 
 	i = -1;
 	color = create_c(0, 0, 0);
-	in_shadow = is_shadowed(list_elem, comp.over_point);
 	while (++i < list_elem -> quant[1])
 	{
+		in_shadow = is_shadowed(list_elem, comp.over_point, i);
 		buff = lighting(&comp.elem->material,
 				&list_elem -> light[i], &comp, in_shadow);
 		color = cadd(color, buff);
