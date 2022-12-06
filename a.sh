@@ -1,1 +1,0 @@
-./miniRT test/p.rt

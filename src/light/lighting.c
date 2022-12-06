@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 20:34:01 by ensebast          #+#    #+#             */
-/*   Updated: 2022/12/05 23:47:42 by ensebast         ###   ########.br       */
+/*   Updated: 2022/12/06 15:18:44 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minirt.h"
@@ -55,7 +55,7 @@ t_color	lighting(t_material *m, t_light *light,
 	double	light_dot;
 	double	ref_dot_eye;
 
-	eff_c = cmult(*m->color, light->color);
+	eff_c = cmult(m->color, light->color);
 	final_color = cmult(eff_c, m->ambient);
 	if (in_shadow)
 		return (final_color);

@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 19:13:09 by ensebast          #+#    #+#             */
-/*   Updated: 2022/12/05 22:59:47 by ensebast         ###   ########.br       */
+/*   Updated: 2022/12/06 13:11:54 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static int	cmp_color(t_color a, t_color b)
 {
 	if (cmp_float(a.tup[0], b.tup[0])
-		&& cmp_float(a.tup[0], b.tup[0])
-		&& cmp_float(a.tup[0], b.tup[0]))
+		&& cmp_float(a.tup[1], b.tup[1])
+		&& cmp_float(a.tup[2], b.tup[2]))
 		return (1);
 	return (0);
 }
@@ -27,8 +27,6 @@ void	prep_checker(t_elem *elem)
 	t_color	color_b;
 
 	elem->texture.img = NULL;
-	elem->texture.height = 4;
-	elem->texture.width = 48;
 	elem->material.specular = 0.1;
 	color_a = elem->material.color;
 	color_b = csub(create_c(1.0, 1.0, 1.0), color_a);

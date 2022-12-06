@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 22:07:16 by ensebast          #+#    #+#             */
-/*   Updated: 2022/12/03 18:27:49 by ensebast         ###   ########.br       */
+/*   Updated: 2022/12/06 15:18:31 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,8 +215,8 @@ void				intersect_cy(t_elem *elem, t_ray *ray,
 						t_intersect_list *i_list);
 
 // Light ------------------------------------------------
-void				set_material(t_list_elem *list_elem);
-t_material			material(t_color *color, t_ambient *ambient);
+void				set_ambient(t_elem *elem, t_ambient *ambient, int quant);
+t_material			material(void);
 t_color				lighting(t_material *m, t_light *light,
 						t_computation *info, int in_shadow);
 int					is_shadowed(t_list_elem *world, t_tuple point);

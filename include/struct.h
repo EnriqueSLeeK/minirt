@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 19:33:59 by ensebast          #+#    #+#             */
-/*   Updated: 2022/12/04 23:41:20 by ensebast         ###   ########.br       */
+/*   Updated: 2022/12/06 15:16:02 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ typedef struct s_mlx {
 
 typedef struct s_material
 {
-	t_color		*color;
+	t_color		color;
 	t_color		ambient;
 	double		diffuse;
 	double		specular;

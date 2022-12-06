@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 16:58:08 by ensebast          #+#    #+#             */
-/*   Updated: 2022/12/05 15:45:20 by ensebast         ###   ########.br       */
+/*   Updated: 2022/12/06 14:39:03 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static int	check_count_lines(int *count, char *file)
 		buff = get_line(fd);
 	}
 	close(fd);
-	if (count[2] < 2 && count[3] < 2)
+	if (count[1] > 0 && count[2] == 1 && count[3] == 1)
 		return (0);
 	return (1);
 }
@@ -101,12 +101,15 @@ int	main(int argc, char **argv)
 	t_list_elem	list_elem;
 
 	ft_memset(list_elem.quant, 0, sizeof(int) * 4);
-	if (basic_check(argc, argv)
-		|| check_count_lines(list_elem.quant, argv[1])
-		|| alloc_mem(&list_elem, list_elem.quant)
+	if (basic_check(argc, argv) || check_count_lines(list_elem.quant, argv[1]))
+	{
+		write(2, "Error: Error at checking\n", 25);
+		return (1);
+	}
+	if (alloc_mem(&list_elem, list_elem.quant)
 		|| mlx_prepare(&list_elem.mlx_inf))
 	{
-		write(2, "Error: Error at checking or alloc memory\n", 41);
+		write(2, "Error: Error at alloc memory\n", 29);
 		return (1);
 	}
 	if (parse_lines(*(argv + 1), &list_elem))
@@ -115,8 +118,7 @@ int	main(int argc, char **argv)
 		dealloc_all_mem(&list_elem, &list_elem.mlx_inf);
 		return (1);
 	}
-	set_ambient(list_elem.ambient,
-		list_elem.elem, list_elem.quant[0]);
+	set_ambient(list_elem.ambient, list_elem.elem, list_elem.quant[0]);
 	start_raytrace(&list_elem);
 	mlx_start(&list_elem);
 	dealloc_all_mem(&list_elem, &list_elem.mlx_inf);

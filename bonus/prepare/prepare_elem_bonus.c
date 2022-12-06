@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 23:47:53 by ensebast          #+#    #+#             */
-/*   Updated: 2022/12/05 19:24:41 by ensebast         ###   ########.br       */
+/*   Updated: 2022/12/06 15:56:48 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	prep_sp(t_aux_parse *info, t_elem *elem, void *mlx)
 			info->coord.tup[1],
 			info->coord.tup[2]);
 	radius = info->diameter * 0.5;
+	elem->texture.width = 18;
+	elem->texture.height = 8;
 	aux = m_mult(aux, scaling(radius, radius, radius));
 	set_transform(elem, aux);
 	elem -> pattern_type = info -> pattern_type;
@@ -54,11 +56,14 @@ int	prep_pl(t_aux_parse *info, t_elem *elem, void *mlx)
 
 	elem->material = material();
 	elem->material.color = info->color;
+	elem->material.specular = 0.3;
 	elem->intersect = intersect_pl;
 	elem->local_normal = normal_pl;
 	aux = translation(info->coord.tup[0],
 			info->coord.tup[1],
 			info->coord.tup[2]);
+	elem->texture.width = 2;
+	elem->texture.height = 2;
 	aux = m_mult(aux, shape_orientation(info->norm_vec));
 	set_transform(elem, aux);
 	elem -> pattern_type = info -> pattern_type;
@@ -85,6 +90,8 @@ int	prep_cy(t_aux_parse *info, t_elem *elem, void *mlx)
 	scale = scaling(radius, 1, radius);
 	rot = shape_orientation(info->norm_vec);
 	set_transform(elem, m_mult(m_mult(trans, rot), scale));
+	elem->texture.width = 30;
+	elem->texture.height = 12;
 	elem->max = info->height / 2;
 	elem->min = -elem->max;
 	elem -> pattern_type = info -> pattern_type;
@@ -111,6 +118,8 @@ int	prep_cn(t_aux_parse *info, t_elem *elem, void *mlx)
 	scale = scaling(factor, 1, factor);
 	rot = shape_orientation(info->norm_vec);
 	set_transform(elem, m_mult(m_mult(trans, rot), scale));
+	elem->texture.width = 30;
+	elem->texture.height = 12;
 	elem->max = info->height / 2;
 	elem->min = -elem->max;
 	elem -> pattern_type = info -> pattern_type;

@@ -1,0 +1,7 @@
+A 0.1 255,255,255
+C 0,1,-10 0,0,1 60
+L -10,10,-10 0.6 255,255,255
+cn -3,3,0 0,1,0 3 2 255,0,255 checker_pattern
+cn 0,0,0 0,0,1 1 1 000,0,255 checker_pattern
+sp 3,3,0 3 255,0,0 bumpmap_pattern texture/earth.xpm
+pl 0,-5,0 0,1,0 125,0,125 checker_pattern

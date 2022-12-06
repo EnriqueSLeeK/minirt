@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/01 23:47:53 by ensebast          #+#    #+#             */
-/*   Updated: 2022/12/03 21:20:48 by ensebast         ###   ########.br       */
+/*   Updated: 2022/12/06 15:55:42 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	prep_sp(t_aux_parse *info, t_elem *elem)
 	t_matrix	aux;
 	double		radius;
 
-	elem->color = info->color;
+	elem->material = material();
+	elem->material.color = info->color;
 	elem->intersect = intersect_s;
 	elem->local_normal = normal_sp;
 	aux = translation(info->coord.tup[0],
@@ -32,7 +33,9 @@ void	prep_pl(t_aux_parse *info, t_elem *elem)
 {
 	t_matrix	aux;
 
-	elem->color = info->color;
+	elem->material = material();
+	elem->material.color = info->color;
+	elem->material.specular = 0.3;
 	elem->intersect = intersect_pl;
 	elem->local_normal = normal_pl;
 	aux = translation(info->coord.tup[0],
@@ -49,7 +52,8 @@ void	prep_cy(t_aux_parse *info, t_elem *elem)
 	t_matrix	scale;
 	double		radius;
 
-	elem->color = info->color;
+	elem->material = material();
+	elem->material.color = info->color;
 	elem->intersect = intersect_cy;
 	elem->local_normal = normal_cy;
 	radius = info->diameter * 0.5;
