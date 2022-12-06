@@ -6,7 +6,7 @@
 /*   By: coder <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 00:34:54 by coder             #+#    #+#             */
-/*   Updated: 2022/12/06 01:56:32 by ensebast         ###   ########.br       */
+/*   Updated: 2022/12/06 02:13:27 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <X11/X.h>
+
+# include <stdio.h>
 
 #endif

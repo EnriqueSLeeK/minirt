@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 17:04:49 by ensebast          #+#    #+#             */
-/*   Updated: 2022/09/24 23:12:52 by ensebast         ###   ########.br       */
+/*   Updated: 2022/12/06 02:37:44 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ static int	cmp_name(char *line, char *name, int *count)
 int	check_count_line(char *line, int *count)
 {
 	if (line == 0
-		|| *line == '\n'
-		|| *line == 0)
+		|| !ft_isalpha(*line))
 		return (2);
 	if (cmp_name(line, "A", &(count[2])))
 		return (check_ambient_light(line));
@@ -51,5 +50,5 @@ int	check_count_line(char *line, int *count)
 		return (check_plane(line));
 	if (cmp_name(line, "cy", &(count[0])))
 		return (check_cylinder(line));
-	return (1);
+	return (0);
 }

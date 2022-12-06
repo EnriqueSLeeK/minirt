@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 17:04:49 by ensebast          #+#    #+#             */
-/*   Updated: 2022/12/02 20:59:04 by ensebast         ###   ########.br       */
+/*   Updated: 2022/12/06 02:32:56 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static int	cmp_name(char *line, char *name)
  */
 int	parse_line(char *line, t_list_elem *elem)
 {
+	if (line == 0 || !ft_isalpha(*line))
+		return (-1);
 	if (cmp_name(line, "A"))
 		return (parse_ambient_light(line, elem -> ambient));
 	if (cmp_name(line, "C"))
