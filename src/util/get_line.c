@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 17:55:22 by ensebast          #+#    #+#             */
-/*   Updated: 2022/09/13 15:42:21 by ensebast         ###   ########.br       */
+/*   Updated: 2022/12/06 21:04:52 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ static char	*write_buff(char *buff, int fd, int limit)
 	if (read_byte == 0 || read_byte == -1)
 	{
 		free(buff);
+		buff = 0;
 		return (0);
 	}
 	return (buff);
