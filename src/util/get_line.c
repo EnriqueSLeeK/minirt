@@ -6,7 +6,7 @@
 /*   By: ensebast <ensebast@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 17:55:22 by ensebast          #+#    #+#             */
-/*   Updated: 2022/12/06 21:04:52 by ensebast         ###   ########.br       */
+/*   Updated: 2022/12/06 21:12:06 by ensebast         ###   ########.br       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ static char	*write_buff(char *buff, int fd, int limit)
 	int		read_byte;
 
 	i = 0;
+	c = 0;
 	read_byte = read(fd, &c, 1);
 	while (read_byte && read_byte != -1 && c != '\n')
 	{
